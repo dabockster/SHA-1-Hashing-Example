@@ -46,10 +46,22 @@ public class SHA1ExampleController {
         Scanner keyboard = new Scanner(System.in);
         System.out.print("Enter a string to be hashed: ");
         String message = keyboard.nextLine();
+        System.out.print("1) SHA-1 -or- 2) SHA-256: ");
+        int selection = keyboard.nextInt();
+        if (selection == 1){
+            model.setAlgorithm("SHA-1");
+        }
+        else if (selection == 2){
+            model.setAlgorithm("SHA-256");
+        }
+        else{
+            view.appendToView("ERROR: Bad input.");
+            return;
+        }
         model.setMessage(message);
     }
     
-    public String getSHA1(){
+    private String getSHA1(){
         String message = model.getMessage();
         //byte[] toBeHashed = message.getBytes("UTF-8");
         
@@ -59,21 +71,22 @@ public class SHA1ExampleController {
         return model.getHex();
     }
     
-    public String getSHA256(){
+    private String getSHA256(){
         String message = model.getMessage();
         String hex = DigestUtils.sha256Hex(message);
         model.setHex(hex);
         return model.getHex();
     }
     
-    public void displayHash(String algorithm){
+    public void displayHash(){
         String toPrint = "";
+        String algorithm = model.getAlgorithm();
         
         if (algorithm.equals("SHA-1")){
             getSHA1();
             String hex = model.getHex();
             StringBuilder sb = new StringBuilder();
-            sb.append("Hash: ");
+            sb.append("SHA-1 hash: ");
             sb.append(hex);
             toPrint = sb.toString();
         }
@@ -82,11 +95,11 @@ public class SHA1ExampleController {
             getSHA256();
             String hex = model.getHex();
             StringBuilder sb = new StringBuilder();
-            sb.append("Hash: ");
+            sb.append("SHA-256 hash: ");
             sb.append(hex);
             toPrint = sb.toString();
         }
-        
+        view.appendToView(toPrint);
     }
     
 }

@@ -36,6 +36,7 @@ public class SHA1Example {
      */
     public static void main(String[] args) {
         SHA1ExampleController controller = new SHA1ExampleController();
-        
+        controller.inputMessage();
+        controller.displayHash();
     }
 }

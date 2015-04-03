@@ -30,27 +30,15 @@ package edu.plu.cs.models;
 public class SHA1ExampleModel {
     
     private String message;
-    private byte[] hash;
     private String hex;
+    private String algorithm;
 
-    public SHA1ExampleModel() {
-        hash = new byte[256];
-    }
-    
     public String getMessage() {
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public byte[] getHash() {
-        return hash;
-    }
-
-    public void setHash(byte[] hash) {
-        this.hash = hash;
     }
 
     public String getHex() {
@@ -60,5 +48,12 @@ public class SHA1ExampleModel {
     public void setHex(String hex) {
         this.hex = hex;
     }
-    
+
+    public String getAlgorithm() {
+        return algorithm;
+    }
+
+    public void setAlgorithm(String algorithm) {
+        this.algorithm = algorithm;
+    }
 }
