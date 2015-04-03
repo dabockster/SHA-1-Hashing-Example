@@ -12,7 +12,7 @@ Simply enter a text string and the specified algorithm. The program will output 
 ### Sources
 
 - [Apache Common Codec for peer-reviewed hashing](http://commons.apache.org/proper/commons-codec/)
-- [Apache's excellend sha256 method with a passed String for easy hashing](http://commons.apache.org/proper/commons-codec/apidocs/org/apache/commons/codec/digest/DigestUtils.html#sha256(java.lang.String))
+- [Apache's excellent sha256 method with a passed String for easy hashing](http://commons.apache.org/proper/commons-codec/apidocs/org/apache/commons/codec/digest/DigestUtils.html#sha256(java.lang.String))
 - [How to bundle external JAR libs in Netbeans projects](http://stackoverflow.com/questions/18451052/how-to-include-jars-in-lib-into-project-jar-file-in-netbeans)
 
 ---
