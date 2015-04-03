@@ -33,6 +33,10 @@ public class SHA1ExampleModel {
     private byte[] hash;
     private String hex;
 
+    public SHA1ExampleModel() {
+        hash = new byte[256];
+    }
+    
     public String getMessage() {
         return message;
     }

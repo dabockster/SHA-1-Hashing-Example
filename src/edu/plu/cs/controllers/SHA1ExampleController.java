@@ -25,11 +25,8 @@ package edu.plu.cs.controllers;
 
 import edu.plu.cs.models.SHA1ExampleModel;
 import edu.plu.cs.views.SHA1ExampleView;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -39,20 +36,10 @@ public class SHA1ExampleController {
     
     private SHA1ExampleModel model;
     private SHA1ExampleView view;
-    private MessageDigest digest;
     
     public SHA1ExampleController(){
         model = new SHA1ExampleModel();
         view = new SHA1ExampleView(this);
-        hashInit();
-    }
-    
-    private void hashInit(){
-        try {
-            digest = MessageDigest.getInstance("SHA-1");
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(SHA1ExampleController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     
     public void inputMessage(){
@@ -62,7 +49,44 @@ public class SHA1ExampleController {
         model.setMessage(message);
     }
     
-    public void getSHA1(){
+    public String getSHA1(){
+        String message = model.getMessage();
+        //byte[] toBeHashed = message.getBytes("UTF-8");
+        
+        String hex = DigestUtils.sha1Hex(message);
+        
+        model.setHex(hex);
+        return model.getHex();
+    }
+    
+    public String getSHA256(){
+        String message = model.getMessage();
+        String hex = DigestUtils.sha256Hex(message);
+        model.setHex(hex);
+        return model.getHex();
+    }
+    
+    public void displayHash(String algorithm){
+        String toPrint = "";
+        
+        if (algorithm.equals("SHA-1")){
+            getSHA1();
+            String hex = model.getHex();
+            StringBuilder sb = new StringBuilder();
+            sb.append("Hash: ");
+            sb.append(hex);
+            toPrint = sb.toString();
+        }
+        
+        if (algorithm.equals("SHA-256")){
+            getSHA256();
+            String hex = model.getHex();
+            StringBuilder sb = new StringBuilder();
+            sb.append("Hash: ");
+            sb.append(hex);
+            toPrint = sb.toString();
+        }
         
     }
+    
 }
